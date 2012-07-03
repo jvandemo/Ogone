@@ -441,7 +441,7 @@ class Ogone_Form
             }
         }
         
-        $html .= '<input type="hidden" name="SHASign" value="' . $this->getSha1Sign() . '" class="' . $this->_config['formElementClass'] . ' /">' . PHP_EOL;
+        $html .= '<input type="hidden" name="SHASign" value="' . $this->getSha1Sign() . '" class="' . $this->_config['formElementClass'] . '" />' . PHP_EOL;
         $html .= '<input type="submit" name="doSubmit" value="' . $this->_config['formSubmitButtonValue'] . '" class="' . $this->_config['formSubmitButtonClass'] . '" />' . PHP_EOL;
         $html .= '</form>' . PHP_EOL;
         return $html;
