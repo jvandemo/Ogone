@@ -458,5 +458,23 @@ class Ogone_Form
         return $html;
     }
     
+    /**
+     * Generates the url in case you want to redirect immediately
+     * 
+     * @return string url
+     */
+    public function getUrl() {
+        $url = $this->_config['formAction'] . '?';
+        
+        foreach ($this->_params as $key => $value) {
+            if($value <> '') {
+                $url .= $key . '=' . $value . '&';
+            }
+        }
+        
+        $url .= 'SHASign=' . $this->getSha1Sign();
+        
+        return $url;
+    }
     
 }
