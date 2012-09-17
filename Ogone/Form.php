@@ -457,17 +457,18 @@ class Ogone_Form
         $html .= '</form>' . PHP_EOL;
         return $html;
     }
-    
+
     /**
      * Generates the url in case you want to redirect immediately
      * 
      * @return string url
      */
-    public function getUrl() {
+    public function getUrl ()
+    {
         $url = $this->_config['formAction'] . '?';
         
         foreach ($this->_params as $key => $value) {
-            if($value <> '') {
+            if ($value != '') {
                 $url .= $key . '=' . $value . '&';
             }
         }
