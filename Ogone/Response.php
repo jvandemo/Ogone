@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * @category     Ogone
@@ -7,27 +7,28 @@
  * @copyright    JobberID (http://www.jobberid.com)
  * @license      http://framework.zend.com/license/new-bsd New BSD License
  */
-
 class Ogone_Response
 {
-    
+
     /**
-     * Array of parameters (any values specified here will be used as default, but can be overridden by constructor or addParam())
+     * Array of parameters (any values specified here will be used as default, 
+     * but can be overridden by constructor or addParam())
      * 
      * @var array
      */
-    protected $_params = array();    
-    
+    protected $_params = array();
+
     /**
-     * Configuration (any values specified here will be used as default, but can be overridden by constructor)
+     * Configuration (any values specified here will be used as default, 
+     * but can be overridden by constructor)
      * 
      * @var array
      */
     protected $_config = array(
         // SHA1 details
-        'sha1OutPassPhrase'	        => '',
+        'sha1OutPassPhrase' => ''
     );
-    
+
     /***********************************************
      *  DO NOT CHANGE ANYTHING BELOW THIS LINE !!!
      **********************************************/
@@ -38,7 +39,7 @@ class Ogone_Response
      * @var string
      */
     protected $_sha1Sign = '';
-    
+
     /**
      * Array of valid parameter names
      * 
@@ -89,9 +90,9 @@ class Ogone_Response
         'SUBBRAND',
         'SUBSCRIPTION_ID',
         'TRXDATE',
-        'VC',
+        'VC'
     );
-            
+
     /**
      * Constructor
      * 
@@ -99,7 +100,7 @@ class Ogone_Response
      * @param  array params Parameters
      * @return Ogone_Response
      */
-    public function __construct($config = array(), $params = array())
+    public function __construct ($config = array(), $params = array())
     {
         $this->_config = array_merge($this->_config, $config);
         
@@ -107,7 +108,7 @@ class Ogone_Response
             $this->addParam($key, $value);
         }
     }
-        
+
     /**
      * Add parameter
      * 
@@ -115,97 +116,98 @@ class Ogone_Response
      * @param  string      $value Parameter value
      * @return Ogone_Response
      */
-    public function addParam($key = null, $value = null)
+    public function addParam ($key = null, $value = null)
     {
-        if($key !== null) {
+        if ($key !== null) {
             // Store all parameters provided by Ogone
-            if(in_array(strtoupper($key), $this->_validParamNames)) {
+            if (in_array(strtoupper($key), $this->_validParamNames)) {
                 $this->_params[$key] = $value;
             }
             
             // Store the SHASIGN returned by Ogone
-            if(strtoupper($key) === 'SHASIGN') {
+            if (strtoupper($key) === 'SHASIGN') {
                 $this->_sha1Sign = $value;
             }
         }
         return $this;
     }
-    
-	/**
+
+    /**
      * Get parameter value
      * 
      * @param  string $key Parameter key
      * @return string Parameter value
      */
-    public function getParam($key = null)
+    public function getParam ($key = null)
     {
-        if($key === null) {
+        if ($key === null) {
             return '';
         }
         
-        $key = strtoupper($key);        
+        $key = strtoupper($key);
         
-        if(! array_key_exists($key, $this->_params)) {
+        if (! array_key_exists($key, $this->_params)) {
             return '';
         }
         
         return $this->_params[$key];
     }
-            
+
     /**
      * Get the Sha1 Sign
      * 
      * @return string Sha1 Sign
      */
-    public function getSha1Sign()
+    public function getSha1Sign ()
     {
         $arrayToHash = array();
         foreach ($this->_params as $key => $value) {
-            if($value <> '' && $this->isValidParam($key)) {
-                $arrayToHash[] = strtoupper($key) . '=' . $value . $this->_config['sha1OutPassPhrase'];
+            if ($value != '' && $this->isValidParam($key)) {
+                $arrayToHash[] = strtoupper($key) . '=' . $value .
+                     $this->_config['sha1OutPassPhrase'];
             }
         }
         asort($arrayToHash);
         $stringToHash = implode('', $arrayToHash);
         return sha1($stringToHash);
     }
-    
+
     /**
      * Check if parameter is valid
      * 
      * @param string $key Parameter name
      * @return boolean
      */
-    public function isValidParam($key)
+    public function isValidParam ($key)
     {
-        if(in_array(strtoupper($key), $this->_validParamNames)) {
+        if (in_array(strtoupper($key), $this->_validParamNames)) {
             return true;
         }
         return false;
     }
-    
+
     /**
      * Check if the response by Ogone is valid
      * 
      * @return boolean
      */
-    public function isValid()
+    public function isValid ()
     {
-        if($this->_sha1Sign == '') {
+        if ($this->_sha1Sign == '') {
             return false;
         }
-        if(strtoupper($this->_sha1Sign) === strtoupper($this->getSha1Sign())) {
+        if (strtoupper($this->_sha1Sign) === strtoupper($this->getSha1Sign())) {
             return true;
         }
         return false;
     }
-        
+
     /**
      * Dump the parameters, for debugging purposes only
      * 
      * @return Ogone_Response
      */
-    public function dump()
+    public function dump ()
     {
         var_dump($this->_params);
         return $this;

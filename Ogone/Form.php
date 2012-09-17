@@ -347,7 +347,7 @@ class Ogone_Form
     
     const OGONE_PRODUCTION_URL = 'https://secure.ogone.com/ncol/prod/orderstandard.asp';
     const OGONE_TEST_URL = 'https://secure.ogone.com/ncol/test/orderstandard.asp';
-       
+
     /**
      * Constructor
      * 
@@ -355,7 +355,7 @@ class Ogone_Form
      * @param  array params Parameters
      * @return Ogone_Form
      */
-    public function __construct($config = array(), $params = array())
+    public function __construct ($config = array(), $params = array())
     {
         $this->_config = array_merge($this->_config, $config);
         
@@ -363,7 +363,7 @@ class Ogone_Form
             $this->addParam($key, $value);
         }
     }
-        
+
     /**
      * Add parameter
      * 
@@ -371,78 +371,89 @@ class Ogone_Form
      * @param  string      $value Parameter value
      * @return Ogone_Form
      */
-    public function addParam($key = null, $value = null)
+    public function addParam ($key = null, $value = null)
     {
-        if($key !== null) {
+        if ($key !== null) {
             $this->_params[$key] = $value;
         }
         return $this;
     }
-    
+
     /**
      * Get parameter value
      * 
      * @param  string $key Parameter key
      * @return string Parameter value
      */
-    public function getParam($key = null)
+    public function getParam ($key = null)
     {
-        if($key === null || (! array_key_exists($key, $this->_params))) {
+        if ($key === null || (! array_key_exists($key, $this->_params))) {
             return '';
         }
         return $this->_params[$key];
     }
-        
+
     /**
      * Get the Sha1 Sign
      * 
      * @return string Sha1 Sign
      */
-    public function getSha1Sign()
+    public function getSha1Sign ()
     {
         $arrayToHash = array();
         foreach ($this->_params as $key => $value) {
-            if($value <> '' && $this->isValidParam($key)) {
-                $arrayToHash[] = strtoupper($key) . '=' . $value . $this->_config['sha1InPassPhrase'];
+            if ($value != '' && $this->isValidParam($key)) {
+                $arrayToHash[] = strtoupper($key) . '=' . $value .
+                     $this->_config['sha1InPassPhrase'];
             }
         }
         asort($arrayToHash);
         $stringToHash = implode('', $arrayToHash);
         return sha1($stringToHash);
     }
-    
+
     /**
      * Check if parameter is valid
      * 
      * @param string $key Parameter name
      * @return boolean
      */
-    public function isValidParam($key)
+    public function isValidParam ($key)
     {
-        if(in_array(strtoupper($key), $this->_validParamNames)) {
+        if (in_array(strtoupper($key), $this->_validParamNames)) {
             return true;
         }
         return false;
     }
-    
+
     /**
      * Render the form
      * 
      * @return string HTML for the form
      */
-    public function render()
+    public function render ()
     {
         $html = '';
-        $html .= '<form method="' . $this->_config['formMethod'] . '" id="' . $this->_config['formId'] . '" action="' . $this->_config['formAction'] . '" name="' . $this->_config['formName'] . '" class="' . $this->_config['formClass'] . '">' . PHP_EOL;
+        $html .= '<form method="' . $this->_config['formMethod'] . '" id="' .
+             $this->_config['formId'] . '" action="' .
+             $this->_config['formAction'] . '" name="' .
+             $this->_config['formName'] . '" class="' .
+             $this->_config['formClass'] . '">' . PHP_EOL;
         
         foreach ($this->_params as $key => $value) {
-            if($value <> '') {
-                $html .= '<input type="hidden" name="' . $key . '" value="' . $value . '" class="' . $this->_config['formElementClass'] . '" />' . PHP_EOL;
+            if ($value != '') {
+                $html .= '<input type="hidden" name="' . $key . '" value="' .
+                     $value . '" class="' . $this->_config['formElementClass'] .
+                     '" />' . PHP_EOL;
             }
         }
         
-        $html .= '<input type="hidden" name="SHASign" value="' . $this->getSha1Sign() . '" class="' . $this->_config['formElementClass'] . '" />' . PHP_EOL;
-        $html .= '<input type="submit" name="doSubmit" value="' . $this->_config['formSubmitButtonValue'] . '" class="' . $this->_config['formSubmitButtonClass'] . '" />' . PHP_EOL;
+        $html .= '<input type="hidden" name="SHASign" value="' .
+             $this->getSha1Sign() . '" class="' .
+             $this->_config['formElementClass'] . '" />' . PHP_EOL;
+        $html .= '<input type="submit" name="doSubmit" value="' .
+             $this->_config['formSubmitButtonValue'] . '" class="' .
+             $this->_config['formSubmitButtonClass'] . '" />' . PHP_EOL;
         $html .= '</form>' . PHP_EOL;
         return $html;
     }
