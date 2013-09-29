@@ -1,20 +1,18 @@
 <?php
+use Jvandemo\Ogone\Form;
 /**
  * Example to generate an Ogone payment form
  * to initiate Ogone payments from your website
- * 
+ *
  * @author       Jurgen Van de Moere (http://www.jvandemo.com)
- * @copyright    JobberID (http://www.jobberid.com) * 
+ * @copyright    JobberID (http://www.jobberid.com) *
  */
-
-// Include Ogone_Form class
-require_once '../Ogone/Form.php';
 
 // Define form options
 // See Ogone_Form for list of supported options
 $options = array(
     'sha1InPassPhrase' => 'your_sha1_in_password',
-    'formAction'       => Ogone_Form::OGONE_TEST_URL,
+    'formAction'       => Form::OGONE_TEST_URL,
 );
 
 // Define form parameters (see Ogone documentation for list)
@@ -34,7 +32,7 @@ $params = array(
 );
 
 // Instantiate form
-$form = new Ogone_Form($options, $params);
+$form = new Form($options, $params);
 
 // You can also add parameters after instantiation
 // with the addParam() method

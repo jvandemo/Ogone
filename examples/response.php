@@ -1,17 +1,16 @@
 <?php
+use Jvandemo\Ogone\Response;
+
 /**
  * Example to handle a response by Ogone
  * after an Ogone_Form was submitted
- * 
+ *
  * This code should be used in the script that is run at the url
  * that you specify as accepturl parameter when submitting the Ogone_Form
- * 
+ *
  * @author       Jurgen Van de Moere (http://www.jvandemo.com)
- * @copyright    JobberID (http://www.jobberid.com) * 
+ * @copyright    JobberID (http://www.jobberid.com) *
  */
-
-// Include Ogone_Response class
-require_once '../Ogone/Response.php';
 
 // Define response options
 // See Ogone_Response for list of supported options
@@ -27,7 +26,7 @@ $options = array(
 $params = $_POST;
 
 // Instantiate response
-$response = new Ogone_Response($options, $params);
+$response = new Response($options, $params);
 
 // Check if response by Ogone is valid
 // The SHA1Sign is calculated automatically and

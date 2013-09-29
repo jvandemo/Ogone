@@ -1,0 +1,20 @@
+{
+    "name": "jvandemo/ogone",
+    "description": "",
+    "type": "library",
+    "keywords": [],
+    "homepage": "",
+    "license": "",
+    "require": {
+        "php": ">=5.3.3",
+        "phpunit/PHPUnit": "3.7.*",
+        "instaclick/php-code-sniffer": "dev-master"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-0": {
+            "Jvandemo\\Ogone": "src/"
+        }
+    }
+}
