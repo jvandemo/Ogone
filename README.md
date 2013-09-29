@@ -29,6 +29,7 @@ Add the following dependency to your `composer.json` file:
 - Added unit tests
 - Fixed some coding standards warnings
 - Added grunt support for unit testing and linting
+- Added semantic versioning
 
 ### 1.0.0
 
