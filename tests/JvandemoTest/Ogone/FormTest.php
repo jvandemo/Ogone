@@ -33,6 +33,11 @@ class FormTest extends PHPUnit_Framework_TestCase
         $this->form = new Form($options, $params);
     }
 
+    public function testAddParamShouldReturnSelf()
+    {
+        $this->assertTrue($this->form->addParam('param', 'value') === $this->form);
+    }
+
     public function testFormHtmlShouldContainInputsForParamsPassedToConstructor()
     {
         $html = $this->form->render();
@@ -48,4 +53,17 @@ class FormTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(stripos($html, 'input type="hidden" name="exceptionurl"') !== false, 'exceptionurl input does not exist');
         $this->assertTrue(stripos($html, 'input type="hidden" name="cancelurl"') !== false, 'cancelurl input does not exist');
     }
+
+    public function testAddParamShouldSetParamsCorrectly()
+    {
+        $this->form->addParam('language', 'en');
+        $this->form->addParam('PSPID', 'SOMEPSPID');
+        $this->form->addParam('someParamName', 'someValue');
+        $html = $this->form->render();
+        $this->assertTrue(stripos($html, 'input type="hidden" name="language" value="en') !== false);
+        $this->assertTrue(stripos($html, 'input type="hidden" name="PSPID" value="SOMEPSPID') !== false);
+        $this->assertTrue(stripos($html, 'input type="hidden" name="someParamName" value="someValue') !== false);
+    }
+
+
 }
