@@ -22,6 +22,11 @@ Add the following dependency to your `composer.json` file:
 
 ## Change log
 
+### 1.0.0
+
+- Added Ogone_Form for generating forms to interact with Ogone
+- Added Ogone_Response for handling responses from Ogone
+
 ### 2.0.0
 
 - Added composer support
@@ -31,7 +36,8 @@ Add the following dependency to your `composer.json` file:
 - Added grunt support for unit testing and linting
 - Added semantic versioning
 
-### 1.0.0
+### 2.1.0
 
-- Added Ogone_Form for generating forms to interact with Ogone
-- Added Ogone_Response for handling responses from Ogone
+- Added additional unit tests
+- Added scenario test
+- Added config file support
