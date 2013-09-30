@@ -1,4 +1,6 @@
 node_modules
 vendor
 .idea
-config/module.config.php
+config/*.local.php
+composer.lock
+composer.phar
