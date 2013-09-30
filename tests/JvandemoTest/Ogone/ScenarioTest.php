@@ -90,10 +90,10 @@ class ScenarioTest extends PHPUnit_Framework_TestCase
 
         $response = $this->httpClient->dispatch($request);
 
-        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals(200, $response->getStatusCode(), 'Ogone response does not have the correct HTTP status code');
 
-        echo 'Status: ' . $response->getStatusCode() . "\n";
-        var_dump($response->getBody());
+        $this->assertSelectCount('form[name="OGONE_CC_FORM"]', 1, $response, 'Ogone response does not include the correct form');
+
     }
 
     protected function _getConfig()
