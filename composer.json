@@ -11,6 +11,7 @@
         "instaclick/php-code-sniffer": "dev-master"
     },
     "require-dev": {
+        "zendframework/zend-config": "dev-master",
         "zendframework/zend-escaper": "dev-master",
         "zendframework/zend-loader": "dev-master",
         "zendframework/zend-stdlib": "dev-master",
