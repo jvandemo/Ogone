@@ -19,7 +19,7 @@ $options = array(
 // Define form parameters (see Ogone documentation for list)
 // Default parameter values can be set in Ogone_Form if required
 $params = array(
-    'PSPID' => 'your_PSPID',
+    'PSPID' => 'your_ogone_pspid',
     'orderID' => 'your_order_id',
     'amount' => 100,
     'currency' => 'EUR',
