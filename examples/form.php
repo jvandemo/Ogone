@@ -1,5 +1,5 @@
 <?php
-include "../vendor/autoload.php";
+require "../vendor/autoload.php";
 use Jvandemo\Ogone\Form;
 /**
  * Example to generate an Ogone payment form
@@ -12,14 +12,14 @@ use Jvandemo\Ogone\Form;
 // Define form options
 // See Ogone_Form for list of supported options
 $options = array(
-    'sha1InPassPhrase' => 'your_sha1_in_password',
+    'sha1InPassPhrase' => 'YourSHA1InPassword',
     'formAction'       => Form::OGONE_TEST_URL,
 );
 
 // Define form parameters (see Ogone documentation for list)
 // Default parameter values can be set in Ogone_Form if required
 $params = array(
-    'PSPID' => 'your_ogone_pspid',
+    'PSPID' => 'jvandemo',
     'orderID' => 'your_order_id',
     'amount' => 100,
     'currency' => 'EUR',
