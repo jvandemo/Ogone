@@ -1,23 +1,35 @@
 <?php
 
 use Jvandemo\Ogone\Form;
+use Zend\Config\Config;
 
 class FormTest extends PHPUnit_Framework_TestCase
 {
+
+    /**
+     * @var Zend\Config\Config
+     */
+    public $config = null;
+
+    /**
+     * @var Jvandemo\Ogone\Form
+     */
     public $form = null;
 
     public function setUp()
     {
 
+        $this->config = $this->_getConfig();
+
         // Define form options
         $options = array(
-            'sha1InPassPhrase' => 'your_sha1_in_password',
+            'sha1InPassPhrase' => $this->config['sha1_in_pass_phrase'],
             'formAction'       => Form::OGONE_TEST_URL,
         );
 
         // Define form parameters (see Ogone documentation for list)
         $params = array(
-            'PSPID'        => 'your_ogone_pspid',
+            'PSPID'        => $this->config['pspid'],
             'orderID'      => 'your_order_id',
             'amount'       => 100,
             'currency'     => 'EUR',
@@ -65,5 +77,13 @@ class FormTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(stripos($html, 'input type="hidden" name="someParamName" value="someValue') !== false);
     }
 
+    protected function _getConfig()
+    {
+        $config = new Config(include 'config/module.config.global.php');
+        if(file_exists('config/module.config.local.php')){
+            $config = $config->merge(new Config(include 'config/module.config.local.php'));
+        }
+        return $config['jvandemo_ogone'];
+    }
 
 }
