@@ -11,6 +11,12 @@
         "instaclick/php-code-sniffer": "dev-master"
     },
     "require-dev": {
+        "zendframework/zend-escaper": "dev-master",
+        "zendframework/zend-loader": "dev-master",
+        "zendframework/zend-stdlib": "dev-master",
+        "zendframework/zend-uri": "dev-master",
+        "zendframework/zend-validator": "dev-master",
+        "zendframework/zend-http": "dev-master"
     },
     "autoload": {
         "psr-0": {

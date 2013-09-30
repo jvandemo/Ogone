@@ -12,7 +12,7 @@ use Jvandemo\Ogone\Form;
 // Define form options
 // See Ogone_Form for list of supported options
 $options = array(
-    'sha1InPassPhrase' => 'YourSHA1InPassword',
+    'sha1InPassPhrase' => 'your_sha1_in_password',
     'formAction'       => Form::OGONE_TEST_URL,
 );
 
