@@ -126,6 +126,10 @@ To configure the scenario test with your Ogone details, copy
 The `.gitignore` file is configured to ignore `module.config.local.php` so you don't have to worry
 about exposing your Ogone details when creating your own public repository.
 
+To actually run the unit test suite, run:
+
+    grunt
+
 ## Change log
 
 ### 1.0.0
