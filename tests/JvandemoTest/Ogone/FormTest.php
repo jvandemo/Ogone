@@ -81,7 +81,7 @@ class FormTest extends PHPUnit_Framework_TestCase
     {
         $config = new Config(include 'config/module.config.global.php');
         if(file_exists('config/module.config.local.php')){
-            $config = $config->merge(new Config(include 'config/module.config.local.php'));
+            $config->merge(new Config(include 'config/module.config.local.php'));
         }
         return $config['jvandemo_ogone'];
     }
