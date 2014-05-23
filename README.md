@@ -1,6 +1,8 @@
 # ATTENTION
 
-To guarantee the best possible service, this project is looking for a motivated maintainer. If you are interested, please contact me: [@jvandemo](http://twitter.com/jvandemo).
+To guarantee the best possible service, this project is looking for a motivated maintainer.
+
+If you are interested, please contact me: [@jvandemo](http://twitter.com/jvandemo).
 
 # Ogone classes for PHP
 
