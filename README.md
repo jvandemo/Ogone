@@ -1,6 +1,6 @@
 # ATTENTION
 
-To guarantee the best possible service, this project is looking for a motivated maintainer.
+This project is looking for a motivated maintainer.
 
 If you are interested, please contact me: [@jvandemo](http://twitter.com/jvandemo).
 
