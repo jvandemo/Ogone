@@ -4,6 +4,8 @@ This project is looking for a motivated maintainer.
 
 If you are interested, please contact me: [@jvandemo](http://twitter.com/jvandemo).
 
+Meanwhile take a look at https://github.com/solidshops/PHPpayments.
+
 # Ogone classes for PHP
 
 PHP classes for working with the Ogone payment system allow you to
